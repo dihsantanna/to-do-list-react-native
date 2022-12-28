@@ -1,5 +1,4 @@
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
 import { Stack } from './Stack';
 
 export function Routes() {
@@ -7,5 +6,5 @@ export function Routes() {
     <NavigationContainer>
       <Stack />
     </NavigationContainer>
-  )
+  );
 }
