@@ -13,7 +13,8 @@ module.exports = function (api) {
             '@services': './src/services',
             '@routes': './src/routes',
           },
-        }]
+        }],
+      "nativewind/babel"
     ],
   };
 };

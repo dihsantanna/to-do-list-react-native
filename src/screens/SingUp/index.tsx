@@ -1,42 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export function SingUp() {
   const { navigate } = useNavigation();
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Sing Up</Text>
+    <View className="flex-1 flex-col bg-gray-900 items-center justify-center">
+      <Text className="text-gray-100 absolute top-12 text-3xl">Sing Up</Text>
 
       <TouchableOpacity onPress={() => navigate('singIn')}>
-        <Text style={styles.button}>Sing Up</Text>
+        <Text className="text-green-400 m-2">Sing In</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigate('todoList')}>
-        <Text style={styles.button}>Todo List</Text>
+        <Text className="text-green-400 m-2">Todo List</Text>
       </TouchableOpacity>
-
-      <StatusBar style="auto" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#222',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    color: '#ccc',
-    position: 'absolute',
-    top: 50,
-    fontSize: 30,
-  },
-  button: {
-    color: 'lime',
-    margin: 10,
-  },
-});
