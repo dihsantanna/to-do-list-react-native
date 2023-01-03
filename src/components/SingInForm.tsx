@@ -1,7 +1,9 @@
-import { View, Text, TextInput, TouchableHighlight, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import twColors from 'tailwindcss/colors';
 import { useCallback, useEffect, useState } from 'react';
+import { Spinner } from './Spinner';
+import Toast from 'react-native-toast-message';
 
 export function SingInForm() {
   const [showPass, setShowPass] = useState(false);
@@ -30,11 +32,18 @@ export function SingInForm() {
   };
 
   const handleSingIn = () => {
+    Toast.hide();
     setLoading(true);
     setTimeout(() => {
-      Alert.alert('Sucesso', 'Login realizado com sucesso!');
+      Toast.show({
+        type: 'success',
+        position: 'bottom',
+        autoHide: true,
+        text1: 'Login realizado com sucesso!',
+        visibilityTime: 2000,
+      });
       setLoading(false);
-    }, 10000);
+    }, 500);
   };
 
   return (
@@ -59,6 +68,7 @@ export function SingInForm() {
           autoCapitalize="none"
           secureTextEntry={!showPass}
           value={singInState.password}
+          keyboardType="visible-password"
           onChangeText={(value) => handleFormField(value, 'password')}
         />
         <TouchableHighlight
@@ -77,12 +87,12 @@ export function SingInForm() {
           className={`w-28 h-10 items-center justify-center ${
             disabledSubmit ? 'bg-green-300' : 'bg-green-400'
           } py-2 px-7 rounded-md`}
-          disabled={disabledSubmit}
+          disabled={disabledSubmit || loading}
           onPress={handleSingIn}
         >
-          <View className="flex-1 items-center justify-center">
+          <View className="relative flex-1 items-center justify-center">
             {loading ? (
-              <Text>loading...</Text>
+              <Spinner size={28} duration={0.7} />
             ) : (
               <Text className="text-gray-100 font-bold">ENTRAR</Text>
             )}
