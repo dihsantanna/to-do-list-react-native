@@ -1,7 +1,7 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Toast from 'react-native-toast-message';
 import twColors from 'tailwindcss/colors';
 
@@ -75,11 +75,13 @@ export function SingInForm() {
           placeholderTextColor={twColors.gray[100]}
           autoCapitalize="none"
           secureTextEntry={!showPass}
+          maxLength={24}
+          passwordRules="minlength: 8; maxlength: 24;"
           value={singInState.password}
           onChangeText={(value) => handleFormField(value, 'password')}
         />
-        <TouchableHighlight
-          className="absolute w-6 h-full items-center justify-center right-2"
+        <TouchableOpacity
+          className="absolute w-6 h-full bottom-[5px] items-center justify-center right-2"
           onPress={toggleShowPass}
         >
           {showPass ? (
@@ -87,7 +89,7 @@ export function SingInForm() {
           ) : (
             <MaterialCommunityIcons name="eye-off" color={twColors.gray[100]} size={20} />
           )}
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
       <View className="flex-row w-full items-center justify-between">
         <View>
@@ -105,7 +107,7 @@ export function SingInForm() {
         </View>
         <TouchableOpacity
           className={`w-28 h-10 items-center justify-center ${
-            disabledSubmit ? 'bg-green-300' : 'bg-green-400'
+            disabledSubmit ? 'bg-green-200' : 'bg-green-500'
           } py-2 px-7 rounded-md`}
           disabled={disabledSubmit || loading}
           onPress={handleSingIn}
