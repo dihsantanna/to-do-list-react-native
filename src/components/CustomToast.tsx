@@ -1,8 +1,8 @@
-import Toast, { BaseToastProps } from 'react-native-toast-message';
-import twColor from 'tailwindcss/colors';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { useRef } from 'react';
 import { Text, View } from 'react-native';
+import Toast, { BaseToastProps } from 'react-native-toast-message';
+import twColor from 'tailwindcss/colors';
 
 type CustomProps = JSX.IntrinsicAttributes & BaseToastProps;
 

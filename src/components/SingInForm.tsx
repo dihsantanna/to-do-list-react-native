@@ -1,9 +1,11 @@
-import { View, Text, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import twColors from 'tailwindcss/colors';
+import { useNavigation } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
-import { Spinner } from './Spinner';
+import { View, Text, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
 import Toast from 'react-native-toast-message';
+import twColors from 'tailwindcss/colors';
+
+import { Spinner } from './Spinner';
 
 export function SingInForm() {
   const [showPass, setShowPass] = useState(false);
@@ -13,6 +15,8 @@ export function SingInForm() {
     email: '',
     password: '',
   });
+
+  const { navigate } = useNavigation();
 
   const allFieldsFilledIn = useCallback(() => {
     const { email, password } = singInState;
@@ -35,19 +39,23 @@ export function SingInForm() {
     Toast.hide();
     setLoading(true);
     setTimeout(() => {
+      setSingInState({ email: '', password: '' });
       Toast.show({
         type: 'success',
         position: 'bottom',
         autoHide: true,
         text1: 'Login realizado com sucesso!',
         visibilityTime: 2000,
+        onShow: () => {
+          navigate('todoList');
+        },
       });
       setLoading(false);
     }, 500);
   };
 
   return (
-    <View className="items-center flex-col gap-4 justify-between px-4 mt-24 mx-auto w-4/5 max-w-md">
+    <View className="items-center flex-col gap-4 justify-between px-4 mt-24 mx-auto w-11/12 max-w-md">
       <Text className="self-start text-gray-100 text-lg">Faça o seu login:</Text>
       <View className="items-center bg-gray-900 px-2 py-1 border-l border-green-400 rounded-sm w-full">
         <TextInput
@@ -68,7 +76,6 @@ export function SingInForm() {
           autoCapitalize="none"
           secureTextEntry={!showPass}
           value={singInState.password}
-          keyboardType="visible-password"
           onChangeText={(value) => handleFormField(value, 'password')}
         />
         <TouchableHighlight
@@ -82,7 +89,20 @@ export function SingInForm() {
           )}
         </TouchableHighlight>
       </View>
-      <View className="w-full items-end justify-between">
+      <View className="flex-row w-full items-center justify-between">
+        <View>
+          <Text className="text-gray-100 text-base">Cadastre-se</Text>
+          <View className="flex-row">
+            <Text className="text-gray-100 text-base">
+              gratuitamente
+              <Text className="text-green-400 text-base" onPress={() => navigate('singUp')}>
+                {' '}
+                aqui
+              </Text>{' '}
+              !
+            </Text>
+          </View>
+        </View>
         <TouchableOpacity
           className={`w-28 h-10 items-center justify-center ${
             disabledSubmit ? 'bg-green-300' : 'bg-green-400'

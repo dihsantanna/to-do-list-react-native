@@ -1,7 +1,7 @@
-import { Animated, Easing } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
-import twColors from 'tailwindcss/colors';
 import { useRef } from 'react';
+import { Animated, Easing } from 'react-native';
+import twColors from 'tailwindcss/colors';
 
 interface SpinnerProps {
   size?: number;
