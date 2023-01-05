@@ -1,19 +1,17 @@
-import { useNavigation } from '@react-navigation/native';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, View } from 'react-native';
+
+import { SingInForm } from '@components/SingInForm';
+import { TodoLogo } from '@components/TodoLogo';
 
 export function SingIn() {
-  const { navigate } = useNavigation();
   return (
-    <View className="flex-1 flex-col bg-gray-900 items-center justify-center">
-      <Text className="text-gray-100 absolute top-12 text-3xl">Sing In</Text>
-
-      <TouchableOpacity onPress={() => navigate('singUp')}>
-        <Text className="text-green-400 m-2">Sing Up</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigate('todoList')}>
-        <Text className="text-green-400 m-2">Todo List</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View className="w-screen h-full bg-gray-800">
+        <TodoLogo className="mt-20" />
+        <KeyboardAvoidingView behavior="position" enabled>
+          <SingInForm />
+        </KeyboardAvoidingView>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }

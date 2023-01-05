@@ -14,7 +14,10 @@ module.exports = function (api) {
             '@routes': './src/routes',
           },
         }],
-      "nativewind/babel"
+      "nativewind/babel",
+      ["babel-plugin-inline-import", {
+        "extensions": [".svg"]
+      }]
     ],
   };
 };
