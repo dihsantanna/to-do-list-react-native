@@ -71,6 +71,7 @@
     ],
     "no-empty-function": "off",
     "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-misused-promises": "off",
     "react/prop-types": "off",
     "no-duplicate-imports": "error",
     "react/react-in-jsx-scope": "off"
